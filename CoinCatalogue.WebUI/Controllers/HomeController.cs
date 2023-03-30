@@ -2,20 +2,27 @@
 using CoinCatalogue.WebUI.Models.Core;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
+using CoinCatalogue.WebUI.Models.ViewModels;
 
 namespace CoinCatalogue.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IWebHostEnvironment hostingEnvironment)
         {
-            _logger = logger;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult Index()
         {
+            var path = _hostingEnvironment.WebRootPath;
+            var viewModel = new HomeViewModel
+            {
+                Path = path
+            };
             using (var db = new CoinCatalogueDbContext())
             {
                 //var coin1 = new Coin { Name = "United States quarter", Value = 0.25m, Year = 1965 };
@@ -31,8 +38,7 @@ namespace CoinCatalogue.WebUI.Controllers
                 //db.Coin.Add(coin);
                 //db.SaveChanges();
             }
-
-            return View();
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
