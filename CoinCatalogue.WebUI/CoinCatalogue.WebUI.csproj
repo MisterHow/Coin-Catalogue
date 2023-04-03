@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\swiper.css" />
     <None Include="wwwroot\img\FiftyPenceObverse.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

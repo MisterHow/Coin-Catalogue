@@ -7,28 +7,23 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>An app for cataloguing and browsing coin collections</p>
-    @foreach(var file in Directory.GetFiles($"{Model.Path}/img", "*.png"))
-    {
-        var fileName = System.IO.Path.GetFileName(file);
-        var imagePath = $"./img/{fileName}";
-@*        <img src="@Url.Content(imagePath)"/>
-*@    }
 </div>
 
-
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        @foreach(var file in Directory.GetFiles($"{Model.Path}/img", "*.png"))
-        {
-            var fileName = System.IO.Path.GetFileName(file);
-            var imagePath = $"./img/{fileName}";
-            <div class="swiper-slide">
-                <img src="@Url.Content(imagePath)"/>
-            </div>
-        }
+<div class="position-relative overflow-hidden">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach(var file in Directory.GetFiles($"{Model.Path}/img", "*.png"))
+            {
+                var fileName = System.IO.Path.GetFileName(file);
+                var imagePath = $"./img/{fileName}";
+                <div class="swiper-slide">
+                    <img src="@Url.Content(imagePath)"/>
+                </div>
+            }
+        </div>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-pagination"></div>
-</div>    
+</div>
 
 <div id="ts-example">
     <br />
@@ -42,30 +37,20 @@
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<style>
-    .swiper-container {
-        width: 400px;
-        height: 400px;
-    }
-
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .swiper-slide img {
-        width:66%;
-    }
-</style>
+<link rel="stylesheet" href="~/css/swiper.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     var swiper = new Swiper('.swiper-container', {
-    pagination: {
-        el: '.swiper-pagination',
-    },
+        loop: true,
+        autoplay: {
+          delay: 300, // Change delay as per your preference (in milliseconds)
+          disableOnInteraction: false, // Allow autoplay to continue even if user interacts with carousel
+        },
+        pagination: {
+            el: '.swiper-pagination',
+    
+        },
+        speed: 3000,
+        spaceBetween: 100
     });
 </script>

@@ -1,8 +1,12 @@
 {
   "version": "1.0.0",
   "name": "asp.net",
+  "type": "module",
   "private": true,
   "devDependencies": {
     "@types/jquery": "3.3.33"
+  },
+  "dependencies": {
+    "swiper": "^9.2.0"
   }
 }
